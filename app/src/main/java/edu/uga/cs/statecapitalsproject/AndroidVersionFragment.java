@@ -176,7 +176,7 @@ public class AndroidVersionFragment extends Fragment {
 //        double randomValue = Math.random();
 //        int stateCapitalsIndex = (int) (randomValue * stateCapitalsList.size());
 
-        // updating the frontend of for each fragment
+        // updating the frontend for each fragment
         titleView.setText(stateCapitalsList.get(versionNum));
         //highlightsView.setText( androidVersionsInfo[ versionNum ] );
     }
