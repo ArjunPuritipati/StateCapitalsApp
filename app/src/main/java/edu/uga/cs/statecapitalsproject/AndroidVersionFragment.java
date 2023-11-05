@@ -1,5 +1,7 @@
 package edu.uga.cs.statecapitalsproject;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +10,60 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import android.content.res.Resources;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
+import com.opencsv.CSVReader;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class AndroidVersionFragment extends Fragment {
+
+
+    private static final String[] stateCapitals = {};
+
+    try {
+        // Open the CSV data file in the assets folder
+        InputStream in_s = getAssets().open("data.csv");
+
+        // Create a list to store the values from the first column
+        List<String> stateCapitalsList = new ArrayList<>();
+
+        // read the CSV data
+        CSVReader reader = new CSVReader(new InputStreamReader(in_s));
+        String[] nextRow;
+        while ((nextRow = reader.readNext()) != null) {
+            // Add the value from the first column to the list
+            if (nextRow.length > 0) {
+                stateCapitalsList.add(nextRow[0]);
+            }
+        }
+
+        // Convert the list to a string array
+        String[] stateCapitals = stateCapitalsList.toArray(new String[0]);
+
+        // Now, stateCapitals contains the values from the first column as a string array
+
+        return stateCapitals;
+
+    } catch (Exception e) {
+        Log.e(TAG, e.toString());
+        return new String[0]; // Return an empty array in case of an error
+    }
+
+
+
+
+
+
+
 
     // Array of Android version code names
     private static final String[] androidVersions = {
