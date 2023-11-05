@@ -127,6 +127,7 @@ public class AndroidVersionFragment extends Fragment {
         List<String> stateCapitalsList = new ArrayList<>();
 
         // This is where I will reed the csv file and store it in the stateCapitals String array
+
         try {
             // Open the CSV data file in the assets folder
             InputStream in_s = getActivity().getAssets().open("StateCapitals.csv");
@@ -164,12 +165,18 @@ public class AndroidVersionFragment extends Fragment {
             e.printStackTrace();
         }
 
+        // Remove the first element (index 0) from the list
+        if (!stateCapitalsList.isEmpty()) {
+            stateCapitalsList.remove(0);
+        }
+
         // Shuffle the list to randomize the order
         Collections.shuffle(stateCapitalsList);
 
 //        double randomValue = Math.random();
 //        int stateCapitalsIndex = (int) (randomValue * stateCapitalsList.size());
 
+        // updating the frontend of for each fragment
         titleView.setText(stateCapitalsList.get(versionNum));
         //highlightsView.setText( androidVersionsInfo[ versionNum ] );
     }
